@@ -1,11 +1,12 @@
 from flask import Flask, jsonify, request
 from pymongo import MongoClient
 from bson.objectid import ObjectId
+from decouple import config
 
 app = Flask(__name__)
 
 # Set up the database connection
-client = MongoClient()
+client = MongoClient(config("MONGO_URI"))
 db = client["CoRider"]
 users = db["users"]
 
